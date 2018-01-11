@@ -6,19 +6,41 @@ public class PlayerSetup : NetworkBehaviour {
 	[SerializeField]
 	Behaviour[] componentsToDisable;
 
+	[SerializeField]
+	string remoteLayerName = "RemotePlayer";
+
 	private Camera sceneCamera;
 
 	void Start() {
 		if (!isLocalPlayer) {
-			for (int i = 0; i < componentsToDisable.Length; i++) {
-				componentsToDisable [i].enabled = false;
-			}
-		} else {
+			DisableComponents ();
+			AssignRemotePlayer ();
+
+		}
+
+		else {
 			sceneCamera = Camera.main;
 			if (sceneCamera != null) {
 				sceneCamera.gameObject.SetActive (false);
 			}
 		}
+
+		RegisterPlayer ();
+	}
+
+	void RegisterPlayer() {
+		string _ID = "Player " + GetComponent<NetworkIdentity> ().netId;
+		transform.name = _ID;
+	}
+
+	void DisableComponents() {
+		for (int i = 0; i < componentsToDisable.Length; i++) {
+			componentsToDisable [i].enabled = false;
+		}
+	}
+
+	void AssignRemotePlayer() {
+		gameObject.layer = LayerMask.NameToLayer (remoteLayerName);
 	}
 
 	// called when object is destroyed
