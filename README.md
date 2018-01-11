@@ -7,12 +7,18 @@ Multiplayer FPS prototype purposed to study basic FPS mechanics and Networking u
 - To avoid the conflict of Script usage between Players, we need to disable desired components form non-local players.
 - In this case, we disabled PlayerMotor, PlayerController, SceneCamera, and AudioListeners.
 - OnDisable will be called when GameObject is being destroyed.
+- Header is used for grouping variables displayed on Inspector.
+- Since we don't want to apply Spring when Player is jumping, so we need to setup ConfigurableJoint in the Script.
 
 ## Movement
 - GetAxisRaw is as same as GetAxis except smoothness.
 - Normalization guarantees our vectors length to be 1. Multiplicated by speed, we will get the velocity added to the Player.
 - We can move a Player using MovePosition where distance = velocity * time.
 - We can turn a Player around using MoveRotation and Quaternion.
+- For Jumping, use AddForce since we need actual force, not a rigid movement as Moving and Rotating.
+- Use Configurable Joint and customize Spring and Damper value in Y Drive.
+- In Rigidbody, there is an option called Drag which can be considered as an air resistance.
+- In Jumping, we use Acceleration = Player's Mass.
 
 ## Networking
 - uNet is splited up to 2 levels, HLAPI and Transport Layer.
@@ -23,6 +29,13 @@ Multiplayer FPS prototype purposed to study basic FPS mechanics and Networking u
 - When client wants to interact with another one, client connects to the host via server, and server will send response to another one.
 - A lot of modern games don't use this since players don't want to type in IP address every time. They want matchmaking but it's restricted by firewall and NAT configuration.
 - Unity solved it by Unity Relay Server as a middle between client and server.
+
+## Syncing Movement
+- NetworkTransform helps game smoother and can predict where Players are going using Rigidbody synchronization.
+- Movement Threshold is how much we can move in units before data is sending out.
+- Snap Threshold is how many units we can move before we don't do any interpolation and snap to that point (e.g. teleporting, lag spikes).
+- Configurable Network Send rate per seconds, setting too much rate is impossible.
+- We want to sync the rotation also, so we need to set Network Transform child as Camera with zero Interpolate Movement.
 
 ## Spawning
 - Create empty GameObject and set NetworkManager Player Spawn Met to be Round Robin.
