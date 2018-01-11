@@ -452,6 +452,8 @@ MonoBehaviour:
   speed: 5
   lookSensitivity: 3
   thrusterForce: 1000
+  jointSpring: 20
+  jointMaxForce: 40
 --- !u!114 &114339574892439136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -501,6 +503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 20652465118676982}
+  cameraRotationLimit: 85
 --- !u!114 &114728948860601286
 MonoBehaviour:
   m_ObjectHideFlags: 1
