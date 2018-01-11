@@ -6,6 +6,7 @@ Multiplayer FPS prototype purposed to study basic FPS mechanics and Networking u
 - Marking variables as [SerializeField] will make it show in the Inspector view even though they are private.
 - To avoid the conflict of Script usage between Players, we need to disable desired components form non-local players.
 - In this case, we disabled PlayerMotor, PlayerController, SceneCamera, and AudioListeners.
+- OnDisable will be called when GameObject is being destroyed.
 
 ## Movement
 - GetAxisRaw is as same as GetAxis except smoothness.
