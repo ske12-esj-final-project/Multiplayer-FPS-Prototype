@@ -9,6 +9,12 @@ Multiplayer FPS prototype purposed to study basic FPS mechanics and Networking u
 - OnDisable will be called when GameObject is being destroyed.
 - Header is used for grouping variables displayed on Inspector.
 - Since we don't want to apply Spring when Player is jumping, so we need to setup ConfigurableJoint in the Script.
+- We use Physics.Raycast to perform a shooting (more details [here](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html)).
+- Marking methods as [Client] will make it to be called on the Client only.
+- Marking methods as [Command] will make it to be called on the Server only.
+- base is used to access the base class from derived class (as same as super in Java).
+- Marking variables as [SyncVar] will make it to be broadcasted its value to all clients in the server (e.g. current health).
+- Awake is used to initialize any variables or game state before the game starts.
 
 ## Movement
 - GetAxisRaw is as same as GetAxis except smoothness.
@@ -39,3 +45,10 @@ Multiplayer FPS prototype purposed to study basic FPS mechanics and Networking u
 
 ## Spawning
 - Create empty GameObject and set NetworkManager Player Spawn Met to be Round Robin.
+
+## LayerMask
+- We use LayerMask to distinguish shooting layer between LocalPlayer and RemotePlayer.
+- Since Unity uses Layer as an index but they represented as string, so we need to use LayerMask.NameToLayer to convert string to int.
+
+## Shooting
+- Player locally check that if bullet hits another one, then it calls CmdPlayerShot from the server. The server tells another Player has been shot and should be taken damage and now client will perform TakeDamage. Since currentHealth is SyncVar so it will broadcast value to all clients in the server.
