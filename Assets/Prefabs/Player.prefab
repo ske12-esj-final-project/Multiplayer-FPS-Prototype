@@ -105,15 +105,16 @@ GameObject:
   - component: {fileID: 4226272917004298}
   - component: {fileID: 135035503305482006}
   - component: {fileID: 54352680484537354}
+  - component: {fileID: 114080976802666438}
+  - component: {fileID: 114339574892439136}
   - component: {fileID: 114579694459266382}
   - component: {fileID: 114263444324388456}
+  - component: {fileID: 114944988882591386}
+  - component: {fileID: 114220978932482364}
   - component: {fileID: 114728948860601286}
-  - component: {fileID: 114339574892439136}
   - component: {fileID: 114525524057356212}
   - component: {fileID: 114960851495128864}
   - component: {fileID: 153870047267950886}
-  - component: {fileID: 114944988882591386}
-  - component: {fileID: 114080976802666438}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -452,6 +453,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  disableOnDeath:
+  - {fileID: 114263444324388456}
+  - {fileID: 114944988882591386}
+  wasEnabled: 
+--- !u!114 &114220978932482364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1930894765585978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0819d8128403837479e0d479d2086640, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  matchSettings:
+    respawnTime: 3
 --- !u!114 &114263444324388456
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -570,7 +588,7 @@ MonoBehaviour:
   camera: {fileID: 20652465118676982}
   mask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
 --- !u!114 &114960851495128864
 MonoBehaviour:
   m_ObjectHideFlags: 1

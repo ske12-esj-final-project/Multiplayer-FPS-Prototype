@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+	public static GameManager instance;
+
+	public MatchSettings matchSettings;
+
+	void Awake() {
+		if (instance == null) {
+			instance = this;
+		}
+	}
+
+	#region Player tracking
+
 	private const string PLAYER_ID_PREFIX = "Player ";
 
 	private static Dictionary<string, Player> players = new Dictionary<string, Player> ();
@@ -21,4 +33,6 @@ public class GameManager : MonoBehaviour {
 	public static Player GetPlayer(string _playerID) {
 		return players [_playerID];
 	}
+
+	#endregion
 }
