@@ -10,11 +10,13 @@ Multiplayer FPS prototype purposed to study basic FPS mechanics and Networking u
 - Header is used for grouping variables displayed on Inspector.
 - Since we don't want to apply Spring when Player is jumping, so we need to setup ConfigurableJoint in the Script.
 - We use Physics.Raycast to perform a shooting (more details [here](https://docs.unity3d.com/ScriptReference/Physics.Raycast.html)).
-- Marking methods as [Client] will make it to be called on the Client only.
-- Marking methods as [Command] will make it to be called on the Server only.
+- Marking method as [Client] will make it to be called on the Client only.
+- Marking method as [Command] will make it to be called on the Server only.
 - base is used to access the base class from derived class (as same as super in Java).
-- Marking variables as [SyncVar] will make it to be broadcasted its value to all clients in the server (e.g. current health).
+- Marking variable as [SyncVar] will make it to be broadcasted its value to all clients in the server (e.g. current health).
 - Awake is used to initialize any variables or game state before the game starts.
+- Marking method as [ClientRpc] will make it sure that it will be called in all clients.
+- Use #region to fold the code when it's too long and head to read.
 
 ## Movement
 - GetAxisRaw is as same as GetAxis except smoothness.
