@@ -24,12 +24,13 @@ public class PlayerSetup : NetworkBehaviour {
 	private Camera sceneCamera;
 
 	void Start() {
-		if (!isLocalPlayer) {
-			DisableComponents ();
-			AssignRemotePlayer ();
-		}
+		Debug.Log(isLocalPlayer);
+		// if (!isLocalPlayer) {
+		// 	DisableComponents ();
+		// 	AssignRemotePlayer ();
+		// }
 
-		else {
+		// else {
 			sceneCamera = Camera.main;
 			if (sceneCamera != null) {
 				sceneCamera.gameObject.SetActive (false);
@@ -41,7 +42,7 @@ public class PlayerSetup : NetworkBehaviour {
 			// Create PlayerUI
 			playerUIInstance = Instantiate(playerUIPrefab);
 			playerUIInstance.name = playerUIPrefab.name;
-		}
+		// }
 
 		GetComponent<Player> ().Setup ();
 
